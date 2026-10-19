@@ -99,3 +99,9 @@ tbody tr:hover .category-icon{transform:translateY(-1px) rotate(-2deg)}
 .currency-top-wrap{flex:0 0 auto}
 .currency-top-wrap select{width:42px;max-width:42px}
 @media(max-width:620px){.currency-top-wrap{flex:0 0 86px}.currency-top-wrap select{width:42px;max-width:42px}}
+
+
+/* Keep native select menus readable in both themes across the dashboard, filters, and forms. */
+select{color-scheme:light}
+select option,select optgroup{color:var(--text);background-color:var(--surface)}
+:root[data-theme=dark] select{color-scheme:dark}
