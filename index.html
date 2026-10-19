@@ -75,10 +75,10 @@
       <header class="dialog-head"><div><span class="dialog-tag">ТРАНЗАКЦИЯ</span><h2 id="transactionTitle">Новая операция</h2></div><button class="icon-btn close" type="button" data-close="transactionDialog" aria-label="Закрыть"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
       <input type="hidden" id="transactionId">
       <label class="field">Тип операции<select id="transactionType" required><option value="expense">Расход</option><option value="income">Доход</option></select></label>
-      <label class="field">Сумма <span class="currency-label">UZS</span><input id="amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0" required></label>
+      <label class="field">Сумма <span class="currency-label">UZS</span><input id="amount" type="text" inputmode="decimal" autocomplete="off" placeholder="0" required></label>
       <label class="field">Категория<select id="category" required></select></label>
       <label class="field">Дата<input id="transactionDate" type="date" required></label>
-      <label class="field">Описание<input id="description" type="text" maxlength="100" placeholder="Например, продукты на неделю" required></label>
+      <label class="field">Описание (необязательно)<input id="description" type="text" maxlength="100" placeholder="Например, продукты на неделю"></label>
       <div class="form-error" id="formError" role="alert"></div>
       <div class="dialog-actions"><button class="btn secondary" type="button" data-close="transactionDialog">Отмена</button><button class="btn primary" id="saveButton" type="submit">Сохранить операцию</button></div>
     </form>
