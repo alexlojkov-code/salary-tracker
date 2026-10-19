@@ -123,3 +123,8 @@ select option,select optgroup{color:var(--text);background-color:var(--surface)}
 @media(min-width:621px) and (max-width:1000px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric.balance{grid-column:1/-1}}
 @media(max-width:620px){.currency-top-wrap{flex:0 0 112px;min-width:112px}}
 @media(max-width:380px){.toolbar{display:grid;grid-template-columns:minmax(0,1fr) 38px 112px;gap:8px}.toolbar>.select-wrap:not(.currency-top-wrap){grid-column:1/3;grid-row:1;width:100%;min-width:0}.toolbar>.currency-top-wrap{grid-column:3;grid-row:1;flex:none;width:112px}.toolbar>.language-wrap{grid-column:1;grid-row:2;justify-self:start}.toolbar>.icon-btn{grid-column:2;grid-row:2;margin-left:0}.toolbar>.primary{grid-column:1/-1;grid-row:3;order:0;flex:none;width:100%;min-height:42px}}
+
+
+/* Keep narrow mobile pages within the viewport and metric values legible. */
+@media(max-width:620px){html,body{overflow-x:hidden}}
+@media(max-width:380px){.metric:not(.balance)>strong{font-size:clamp(13px,4.2vw,16px);letter-spacing:-.55px}}
