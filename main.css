@@ -109,7 +109,7 @@ select option,select optgroup{color:var(--text);background-color:var(--surface)}
 
 /* Point tooltips work with both pointer and keyboard focus. */
 .chart{position:relative}
-.chart-tooltip{position:absolute;z-index:2;max-width:calc(100% - 8px);padding:6px 9px;border:1px solid var(--border);border-radius:8px;background:var(--text);color:var(--bg);box-shadow:0 8px 24px rgba(0,0,0,.2);font-size:11px;font-weight:650;line-height:1.35;white-space:nowrap;pointer-events:none}
+.chart-tooltip{position:absolute;z-index:2;width:max-content;max-width:min(320px,calc(100% - 8px));padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--text);color:var(--bg);box-shadow:0 8px 24px rgba(0,0,0,.2);font-size:11px;font-weight:650;line-height:1.4;white-space:normal;pointer-events:none}
 .chart-tooltip[hidden]{display:none}
 .point,.donut-part{cursor:pointer}
 .point:hover,.point:focus-visible{stroke-width:4;filter:drop-shadow(0 1px 2px rgba(0,0,0,.24))}
