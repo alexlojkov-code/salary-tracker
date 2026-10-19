@@ -238,7 +238,7 @@
       var values=bucketData.map(function(data){return data.balance;});
       function bucketSummary(bucket,data){return bucket.fullLabel+": "+tr("Доходы")+": "+fmt(data.income)+"; "+tr("Расходы")+": "+fmt(data.expense)+"; "+tr("Баланс периода")+": "+fmt(data.balance)+"; "+countText(data.count);}
       $("#trendDescription").textContent=buckets.map(function(bucket,index){return bucketSummary(bucket,bucketData[index]);}).join(". ");
-      var box=$("#trendChart");if(values.every(function(v){return v===0;})){box.innerHTML='<div class="empty-chart">'+tr("Добавьте операции, чтобы увидеть динамику")+'</div>';return;}
+      var box=$("#trendChart");if(bucketData.every(function(data){return data.count===0;})){box.innerHTML='<div class="empty-chart">'+tr("Добавьте операции, чтобы увидеть динамику")+'</div>';return;}
       var W=700,H=220,L=48,R=9,T=10,B=27,ph=H-T-B,pw=W-L-R,min=Math.min(0,...values),max=Math.max(0,...values);if(max===min){max+=1;min-=1;}var pad=(max-min)*.12;max+=pad;min-=pad;
       function px(i){return L+pw*(buckets.length===1?.5:i/(buckets.length-1));}
       function py(v){return T+(max-v)/(max-min)*ph;}
