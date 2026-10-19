@@ -12,7 +12,7 @@
     ["Общий баланс","Umumiy balans","Total balance"],["За всё время","Barcha vaqt uchun","All time"],["Доходы","Daromadlar","Income"],["Расходы","Xarajatlar","Expenses"],["за период","davr davomida","this period"],["Динамика финансов","Moliyaviy dinamika","Financial trend"],["Доходы минус расходы","Daromad minus xarajat","Income minus expenses"],["Баланс периода","Davr balansi","Period balance"],["График динамики финансов","Moliyaviy dinamika grafigi","Financial trend chart"],["Расходы по категориям","Toifalar bo‘yicha xarajatlar","Expenses by category"],["Распределение за период","Davr bo‘yicha taqsimot","Period distribution"],["Распределение расходов по категориям","Xarajatlarning toifalar bo‘yicha taqsimoti","Expense distribution by category"],["Нет расходов за период","Davr uchun xarajatlar yo‘q","No expenses in this period"],["Добавьте операции, чтобы увидеть динамику","Dinamikaning ko‘rinishi uchun amaliyot qo‘shing","Add transactions to see the trend"],
     ["ВСЕ ЗАПИСИ","BARCHA YOZUVLAR","ALL TRANSACTIONS"],["История операций","Amaliyotlar tarixi","Transaction history"],["Поиск, фильтрация и управление транзакциями.","Tranzaksiyalarni qidirish, filtrlash va boshqarish.","Search, filter, and manage transactions."],["Добавить","Qo‘shish","Add"],["Поиск по описанию","Tavsif bo‘yicha qidirish","Search descriptions"],["Поиск","Qidirish","Search"],["Тип операции","Amaliyot turi","Transaction type"],["Все типы","Barcha turlar","All types"],["Категория","Toifa","Category"],["Все категории","Barcha toifalar","All categories"],["Сортировка","Saralash","Sort"],["Сначала новые","Avval yangilari","Newest first"],["Сначала старые","Avval eskilari","Oldest first"],["Сумма: по убыванию","Summa: kamayish tartibida","Amount: high to low"],["Сумма: по возрастанию","Summa: o‘sish tartibida","Amount: low to high"],["Сбросить","Tozalash","Reset"],["ОПЕРАЦИЯ","AMALIYOT","TRANSACTION"],["ТИП","TUR","TYPE"],["КАТЕГОРИЯ","TOIFA","CATEGORY"],["ДАТА","SANA","DATE"],["СУММА","SUMMA","AMOUNT"],["Действия","Amallar","Actions"],["Сохранено локально","Mahalliy saqlandi","Saved locally"],["данные не покидают устройство","ma’lumotlar qurilmangizdan chiqmaydi","your data stays on this device"],
     ["ТРАНЗАКЦИЯ","TRANZAKSIYA","TRANSACTION"],["Новая операция","Yangi amaliyot","New transaction"],["Редактировать операцию","Amaliyotni tahrirlash","Edit transaction"],["Закрыть","Yopish","Close"],["Расход","Xarajat","Expense"],["Доход","Daromad","Income"],["Сумма","Summa","Amount"],["Дата","Sana","Date"],["Описание","Tavsif","Description"],["Например, продукты на неделю","Masalan, bir haftalik mahsulotlar","For example, weekly groceries"],["Отмена","Bekor qilish","Cancel"],["Сохранить изменения","O‘zgarishlarni saqlash","Save changes"],["Сохранить операцию","Amaliyotni saqlash","Save transaction"],
-    ["ПЕРСОНАЛИЗАЦИЯ","SOZLAMALAR","PERSONALIZATION"],["Основная валюта","Asosiy valyuta","Main currency"],["UZS — узбекский сум","UZS — o‘zbek so‘mi","UZS — Uzbekistani soʻm"],["USD — доллар США","USD — AQSh dollari","USD — US dollar"],["EUR — евро","EUR — yevro","EUR — euro"],["RUB — российский рубль","RUB — Rossiya rubli","RUB — Russian ruble"],["KZT — казахстанский тенге","KZT — Qozog‘iston tengesi","KZT — Kazakhstani tenge"],["Тема интерфейса","Interfeys mavzusi","Interface theme"],["Светлая или тёмная","Yorug‘ yoki qorong‘i","Light or dark"],["Светлая тема","Yorug‘ mavzu","Light theme"],["Тёмная тема","Qorong‘i mavzu","Dark theme"],["Локальное хранение","Mahalliy saqlash","Local storage"],["Транзакции и настройки сохраняются в localStorage этого браузера. При смене валюты значения не конвертируются автоматически.","Tranzaksiyalar va sozlamalar ushbu brauzerning localStorage xotirasida saqlanadi. Valyuta almashtirilganda summalar avtomatik konvertatsiya qilinmaydi.","Transactions and settings are saved in this browser’s localStorage. Amounts are not converted automatically when you change currency."],["Транзакции","Tranzaksiyalar","Transactions"],["Удалить все","Hammasini o‘chirish","Delete all"],["Готово","Tayyor","Done"],
+    ["ПЕРСОНАЛИЗАЦИЯ","SOZLAMALAR","PERSONALIZATION"],["Основная валюта","Asosiy valyuta","Main currency"],["UZS — узбекский сум","UZS — o‘zbek so‘mi","UZS — Uzbekistani soʻm"],["USD — доллар США","USD — AQSh dollari","USD — US dollar"],["EUR — евро","EUR — yevro","EUR — euro"],["RUB — российский рубль","RUB — Rossiya rubli","RUB — Russian ruble"],["KZT — казахстанский тенге","KZT — Qozog‘iston tengesi","KZT — Kazakhstani tenge"],["Тема интерфейса","Interfeys mavzusi","Interface theme"],["Светлая или тёмная","Yorug‘ yoki qorong‘i","Light or dark"],["Светлая тема","Yorug‘ mavzu","Light theme"],["Тёмная тема","Qorong‘i mavzu","Dark theme"],["Локальное хранение","Mahalliy saqlash","Local storage"],["Транзакции и настройки хранятся в localStorage этого браузера. При смене валюты суммы пересчитываются по официальному курсу ЦБ Узбекистана на дату смены; требуется интернет.","Tranzaksiyalar va sozlamalar ushbu brauzerning localStorage xotirasida saqlanadi. Valyuta almashtirilganda summalar almashtirish sanasidagi O‘zbekiston MB rasmiy kursi bo‘yicha qayta hisoblanadi; internet kerak.","Transactions and settings are stored in this browser’s localStorage. When you change currency, all amounts are recalculated using the Uzbekistan Central Bank rate for that date; internet access is required."],["Суммы конвертированы по официальному курсу ЦБ Узбекистана","Summalar O‘zbekiston MB rasmiy kursi bo‘yicha konvertatsiya qilindi","Amounts converted using the official Uzbekistan Central Bank rate"],["Валюта изменена. Сохранённых операций нет.","Valyuta o‘zgartirildi. Saqlangan amaliyotlar yo‘q.","Currency changed. There were no saved transactions to convert."],["Не удалось получить курс ЦБ Узбекистана. Валюта и суммы не изменены.","O‘zbekiston MB kursini olib bo‘lmadi. Valyuta va summalar o‘zgartirilmadi.","Could not get the Uzbekistan Central Bank rate. Currency and amounts were not changed."],["Транзакции","Tranzaksiyalar","Transactions"],["Удалить все","Hammasini o‘chirish","Delete all"],["Готово","Tayyor","Done"],
     ["Ничего не найдено","Hech narsa topilmadi","No results found"],["Пока нет операций","Hozircha amaliyotlar yo‘q","No transactions yet"],["Измените поиск или сбросьте фильтры.","Qidiruvni o‘zgartiring yoki filtrlarni tozalang.","Change your search or reset the filters."],["Добавьте первую доходную или расходную операцию.","Birinchi daromad yoki xarajat amaliyotini qo‘shing.","Add your first income or expense transaction."],["Редактировать","Tahrirlash","Edit"],["Удалить","O‘chirish","Delete"],["Хранилище браузера недоступно. Изменения пока останутся в памяти страницы.","Brauzer xotirasidan foydalanib bo‘lmadi. O‘zgarishlar hozircha sahifa xotirasida qoladi.","Browser storage is unavailable. Changes will stay in this page for now."],["Не удалось прочитать localStorage. Используются демонстрационные данные.","localStorage ma’lumotlarini o‘qib bo‘lmadi. Namuna ma’lumotlari ishlatilmoqda.","Could not read localStorage. Demo data is being used."],["Сумма должна быть больше нуля.","Summa noldan katta bo‘lishi kerak.","Amount must be greater than zero."],["Укажите корректную дату.","To‘g‘ri sanani kiriting.","Enter a valid date."],["Добавьте описание операции.","Amaliyot tavsifini kiriting.","Add a transaction description."],["Операция добавлена","Amaliyot qo‘shildi","Transaction added"],["Операция обновлена","Amaliyot yangilandi","Transaction updated"],["Удалить операцию","Amaliyot o‘chirilsinmi","Delete transaction"],["Операция удалена","Amaliyot o‘chirildi","Transaction deleted"],["Список уже пуст","Ro‘yxat allaqachon bo‘sh","The list is already empty"],["Удалить все операции? Это действие нельзя отменить.","Barcha amaliyotlar o‘chirilsinmi? Bu amalni ortga qaytarib bo‘lmaydi.","Delete all transactions? This action cannot be undone."],["Все операции удалены","Barcha amaliyotlar o‘chirildi","All transactions deleted"]
   ];
   var CAT_NAMES={salary:["Зарплата","Maosh","Salary"],freelance:["Фриланс","Frilans","Freelance"],business:["Бизнес","Biznes","Business"],gift:["Подарок","Sovg‘a","Gift"],"other-income":["Другое","Boshqa","Other"],food:["Продукты","Oziq-ovqat","Groceries"],housing:["Жильё","Uy-joy","Housing"],transport:["Транспорт","Transport","Transport"],shopping:["Покупки","Xaridlar","Shopping"],health:["Здоровье","Salomatlik","Health"],entertainment:["Развлечения","Ko‘ngilochar","Entertainment"],bills:["Счета","Hisoblar","Bills"],"other-expense":["Другое","Boshqa","Other"]};
@@ -67,8 +67,76 @@
   var state={transactions:initial.transactions,settings:initial.settings,period:"month",search:"",type:"all",category:"all",sort:"date-desc"};
   var toastTimer=0;
   var saving=false;
+  var currencyChanging=false;
+  function fetchCbuRates(){
+    var controller=window.AbortController?new window.AbortController():null,timeout=0,options={cache:"no-store"};
+    if(controller){options.signal=controller.signal;timeout=setTimeout(function(){controller.abort();},12000);}
+    return fetch("https://cbu.uz/uz/arkhiv-kursov-valyut/json/",options)
+      .then(function(response){if(!response.ok)throw new Error("cbu_response");return response.json();})
+      .then(function(data){
+        if(!Array.isArray(data)||!data.length)throw new Error("cbu_data");
+        var perUZS={UZS:1};
+        data.forEach(function(item){
+          var code=String(item.Ccy||"").toUpperCase();
+          var nominal=Number(String(item.Nominal==null?1:item.Nominal).replace(/\s/g,"").replace(",","."));
+          var rate=Number(String(item.Rate||"").replace(/\s/g,"").replace(",","."));
+          if(CURRENCY.indexOf(code)>=0&&isFinite(nominal)&&nominal>0&&isFinite(rate)&&rate>0)perUZS[code]=rate/nominal;
+        });
+        return {perUZS:perUZS,date:String((data[0]&&data[0].Date)||"")};
+      })
+      .then(function(result){if(timeout)clearTimeout(timeout);return result;},function(error){if(timeout)clearTimeout(timeout);throw error;});
+  }
+  function changeCurrency(target,select){
+    var previous=state.settings.currency;
+    if(currencyChanging){select.value=previous;return;}
+    if(CURRENCY.indexOf(target)<0||target===previous){select.value=previous;return;}
+    currencyChanging=true;select.disabled=true;select.value=previous;
+    var previousTransactions=state.transactions;
+    var ratesPromise=previousTransactions.length?fetchCbuRates():Promise.resolve({perUZS:{UZS:1},date:""});
+    ratesPromise.then(function(rates){
+      var factor=1;
+      if(previousTransactions.length){
+        var from=Number(rates.perUZS[previous]),to=Number(rates.perUZS[target]);
+        if(!(isFinite(from)&&from>0&&isFinite(to)&&to>0))throw new Error("missing_cbu_rate");
+        factor=from/to;
+      }
+      var converted=previousTransactions.map(function(transaction){
+        var amount=Number(transaction.amount);
+        if(!(isFinite(amount)&&amount>0))throw new Error("invalid_amount");
+        var result={};
+        Object.keys(transaction).forEach(function(key){result[key]=transaction[key];});
+        result.amount=Math.round(amount*factor*100000000)/100000000;
+        if(!(isFinite(result.amount)&&result.amount>0))throw new Error("invalid_converted_amount");
+        return result;
+      });
+      state.transactions=converted;
+      state.settings.currency=target;
+      if(!Store.save()){
+        state.transactions=previousTransactions;
+        state.settings.currency=previous;
+        UI.all();
+        return;
+      }
+      UI.all();
+      if(previousTransactions.length){
+        notify(tr("Суммы конвертированы по официальному курсу ЦБ Узбекистана")+(rates.date?" — "+rates.date:""));
+      }else notify(tr("Валюта изменена. Сохранённых операций нет."));
+    }).catch(function(){
+      if(state.settings.currency!==previous){
+        state.transactions=previousTransactions;
+        state.settings.currency=previous;
+        Store.save();
+        UI.all();
+      }
+      notify(tr("Не удалось получить курс ЦБ Узбекистана. Валюта и суммы не изменены."));
+    }).then(function(){
+      currencyChanging=false;select.disabled=false;select.value=state.settings.currency;
+    },function(){
+      currencyChanging=false;select.disabled=false;select.value=state.settings.currency;
+    });
+  }
   function notify(message){var el=$("#toast");el.textContent=message;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.classList.remove("show");},2800);}
-  function fmt(value){try{return new Intl.NumberFormat(locale(),{style:"currency",currency:state.settings.currency,maximumFractionDigits:0}).format(Number(value)||0);}catch(e){return Math.round(value).toLocaleString(locale())+" "+state.settings.currency;}}
+  function fmt(value){try{return new Intl.NumberFormat(locale(),{style:"currency",currency:state.settings.currency,maximumFractionDigits:state.settings.currency==="UZS"?0:2}).format(Number(value)||0);}catch(e){return Math.round(value).toLocaleString(locale())+" "+state.settings.currency;}}
   function compact(value){var n=Number(value)||0;return Math.abs(n)>=1000000?(n/1000000).toLocaleString(locale(),{maximumFractionDigits:1})+(state.settings.lang==="en"?"M":state.settings.lang==="uz"?" mln":" млн"):Math.round(n/1000).toLocaleString(locale())+(state.settings.lang==="en"?"K":state.settings.lang==="uz"?" ming":" тыс.");}
   function validDate(s){if(!/^\d{4}-\d{2}-\d{2}$/.test(s))return false;var d=new Date(s+"T12:00:00");return !isNaN(d.getTime())&&dateISO(d)===s;}
   function getRange(){
@@ -126,7 +194,7 @@
       var costs=Finance.period().filter(function(t){return t.type==="expense";});
       var map={};costs.forEach(function(t){map[t.category]=(map[t.category]||0)+Number(t.amount);});
       var items=Object.keys(map).map(function(key){var c=catById(key);return {id:key,label:catLabel(key),color:c[2],value:map[key]};}).sort(function(a,b){return b.value-a.value;});
-      var sum=items.reduce(function(a,b){return a+b.value;},0);var totalNumber=new Intl.NumberFormat(locale(),{maximumFractionDigits:0}).format(sum);$("#donutTotal").innerHTML='<span class="donut-number">'+escape(totalNumber)+'</span><span class="donut-currency">'+escape(state.settings.currency)+'</span>';
+      var sum=items.reduce(function(a,b){return a+b.value;},0);var totalNumber=new Intl.NumberFormat(locale(),{maximumFractionDigits:state.settings.currency==="UZS"?0:2}).format(sum);$("#donutTotal").innerHTML='<span class="donut-number">'+escape(totalNumber)+'</span><span class="donut-currency">'+escape(state.settings.currency)+'</span>';
       var circumference=2*Math.PI*53,offset=0,parts="";
       items.forEach(function(item){var len=circumference*item.value/sum;parts+='<circle class="donut-part" cx="75" cy="75" r="53" stroke="'+item.color+'" stroke-dasharray="'+len+" "+(circumference-len)+'" stroke-dashoffset="'+(-offset)+'"><title>'+escape(item.label+": "+fmt(item.value))+"</title></circle>";offset+=len;});
       $("#categoryChart").innerHTML='<svg viewBox="0 0 150 150" aria-hidden="true"><circle class="donut-track" cx="75" cy="75" r="53"/>'+parts+"</svg>";
@@ -195,7 +263,7 @@
   $("#themeToggle").addEventListener("click",toggleTheme);$("#settingsTheme").addEventListener("click",toggleTheme);
   function openSettings(){$("#settingsDialog").showModal();}
   $("#openSettings").addEventListener("click",openSettings);$("#footerSettings").addEventListener("click",openSettings);
-  $("#currencySelect").addEventListener("change",function(){state.settings.currency=this.value;commit();});
+  $("#currencySelect").addEventListener("change",function(){changeCurrency(this.value,this);});
   document.querySelectorAll("[data-close]").forEach(function(btn){btn.addEventListener("click",function(){var d=document.getElementById(btn.dataset.close);if(d&&d.open)d.close();});});
   document.querySelectorAll("dialog").forEach(function(dialog){dialog.addEventListener("click",function(event){if(event.target===dialog)dialog.close();});});
   $("#clearData").addEventListener("click",function(){if(!state.transactions.length){notify(tr("Список уже пуст"));return;}if(!window.confirm(tr("Удалить все операции? Это действие нельзя отменить.")))return;state.transactions=[];commit();notify(tr("Все операции удалены"));});
