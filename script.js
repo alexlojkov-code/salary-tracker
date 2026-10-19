@@ -86,11 +86,17 @@
       })
       .then(function(result){if(timeout)clearTimeout(timeout);return result;},function(error){if(timeout)clearTimeout(timeout);throw error;});
   }
-  function changeCurrency(target,select){
+  function syncCurrencySelectors(value,disabled){
+    document.querySelectorAll("[data-currency-select]").forEach(function(select){
+      select.value=value;
+      if(typeof disabled==="boolean")select.disabled=disabled;
+    });
+  }
+  function changeCurrency(target){
     var previous=state.settings.currency;
-    if(currencyChanging){select.value=previous;return;}
-    if(CURRENCY.indexOf(target)<0||target===previous){select.value=previous;return;}
-    currencyChanging=true;select.disabled=true;select.value=previous;
+    if(currencyChanging){syncCurrencySelectors(previous);return;}
+    if(CURRENCY.indexOf(target)<0||target===previous){syncCurrencySelectors(previous);return;}
+    currencyChanging=true;syncCurrencySelectors(previous,true);
     var previousTransactions=state.transactions;
     var ratesPromise=previousTransactions.length?fetchCbuRates():Promise.resolve({perUZS:{UZS:1},date:""});
     ratesPromise.then(function(rates){
@@ -130,9 +136,9 @@
       }
       notify(tr("Не удалось получить курс ЦБ Узбекистана. Валюта и суммы не изменены."));
     }).then(function(){
-      currencyChanging=false;select.disabled=false;select.value=state.settings.currency;
+      currencyChanging=false;syncCurrencySelectors(state.settings.currency,false);
     },function(){
-      currencyChanging=false;select.disabled=false;select.value=state.settings.currency;
+      currencyChanging=false;syncCurrencySelectors(state.settings.currency,false);
     });
   }
   function notify(message){var el=$("#toast");el.textContent=message;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.classList.remove("show");},2800);}
@@ -209,7 +215,7 @@
       });
       $("#transactionRows").innerHTML=rows;$("#resultCount").textContent=countText(list.length);
     },
-    all:function(){UI.theme();$("#currencySelect").value=state.settings.currency;$(".currency-label").textContent=state.settings.currency;UI.metrics();UI.trend();UI.donut();UI.history();}
+    all:function(){UI.theme();syncCurrencySelectors(state.settings.currency);$(".currency-label").textContent=state.settings.currency;UI.metrics();UI.trend();UI.donut();UI.history();}
   };
   function fitDonutTotal(){
     var number=$("#categoryChart .donut-number"),chart=$("#categoryChart");
@@ -263,7 +269,7 @@
   $("#themeToggle").addEventListener("click",toggleTheme);$("#settingsTheme").addEventListener("click",toggleTheme);
   function openSettings(){$("#settingsDialog").showModal();}
   $("#openSettings").addEventListener("click",openSettings);$("#footerSettings").addEventListener("click",openSettings);
-  $("#currencySelect").addEventListener("change",function(){changeCurrency(this.value,this);});
+  document.querySelectorAll("[data-currency-select]").forEach(function(select){select.addEventListener("change",function(){changeCurrency(this.value);});});
   document.querySelectorAll("[data-close]").forEach(function(btn){btn.addEventListener("click",function(){var d=document.getElementById(btn.dataset.close);if(d&&d.open)d.close();});});
   document.querySelectorAll("dialog").forEach(function(dialog){dialog.addEventListener("click",function(event){if(event.target===dialog)dialog.close();});});
   $("#clearData").addEventListener("click",function(){if(!state.transactions.length){notify(tr("Список уже пуст"));return;}if(!window.confirm(tr("Удалить все операции? Это действие нельзя отменить.")))return;state.transactions=[];commit();notify(tr("Все операции удалены"));});
