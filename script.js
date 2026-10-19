@@ -211,11 +211,33 @@
     },
     trend:function(){
       var buckets=[],mode=state.period;
-      if(mode==="week"){var start=new Date(today.getFullYear(),today.getMonth(),today.getDate());start.setDate(start.getDate()-((start.getDay()+6)%7));for(var i=0;i<7;i++){var d=new Date(start);d.setDate(start.getDate()+i);buckets.push({from:dateISO(d),to:dateISO(new Date(d.getFullYear(),d.getMonth(),d.getDate()+1)),label:new Intl.DateTimeFormat(locale(),{weekday:"short"}).format(d)});}}
-      else if(mode==="month"){var y=today.getFullYear(),m=today.getMonth(),days=new Date(y,m+1,0).getDate(),count=Math.ceil(days/7);for(var j=0;j<count;j++){var day=j*7+1,finish=Math.min(day+7,days+1);buckets.push({from:dateISO(new Date(y,m,day)),to:dateISO(new Date(y,m,finish)),label:day+"–"+(finish-1)});}}
-      else{for(var k=0;k<12;k++){buckets.push({from:dateISO(new Date(today.getFullYear(),k,1)),to:dateISO(new Date(today.getFullYear(),k+1,1)),label:new Intl.DateTimeFormat(locale(),{month:"short"}).format(new Date(today.getFullYear(),k,1)).replace(".","")});}}
-      var values=buckets.map(function(b){return state.transactions.filter(function(t){return inRange(t,b);}).reduce(function(sum,t){return sum+(t.type==="income"?Number(t.amount):-Number(t.amount));},0);});
-      $("#trendDescription").textContent=tr("Баланс периода")+": "+buckets.map(function(bucket,index){return bucket.label+" — "+fmt(values[index]);}).join("; ");
+      function exactDate(d){return new Intl.DateTimeFormat(locale(),{day:"numeric",month:"long",year:"numeric"}).format(d);}
+      if(mode==="week"){
+        var start=new Date(today.getFullYear(),today.getMonth(),today.getDate());
+        start.setDate(start.getDate()-((start.getDay()+6)%7));
+        for(var i=0;i<7;i++){
+          var d=new Date(start);d.setDate(start.getDate()+i);
+          buckets.push({from:dateISO(d),to:dateISO(new Date(d.getFullYear(),d.getMonth(),d.getDate()+1)),label:new Intl.DateTimeFormat(locale(),{weekday:"short"}).format(d),fullLabel:exactDate(d)});
+        }
+      }else if(mode==="month"){
+        var y=today.getFullYear(),m=today.getMonth(),days=new Date(y,m+1,0).getDate();
+        for(var day=1;day<=days;day++){
+          var dailyDate=new Date(y,m,day);
+          buckets.push({from:dateISO(dailyDate),to:dateISO(new Date(y,m,day+1)),label:String(day),fullLabel:exactDate(dailyDate)});
+        }
+      }else{
+        for(var k=0;k<12;k++){
+          var monthDate=new Date(today.getFullYear(),k,1);
+          buckets.push({from:dateISO(monthDate),to:dateISO(new Date(today.getFullYear(),k+1,1)),label:new Intl.DateTimeFormat(locale(),{month:"short"}).format(monthDate).replace(".",""),fullLabel:new Intl.DateTimeFormat(locale(),{month:"long",year:"numeric"}).format(monthDate)});
+        }
+      }
+      var bucketData=buckets.map(function(bucket){
+        var list=state.transactions.filter(function(t){return inRange(t,bucket);}),totals=Finance.totals(list);
+        return {income:totals.income,expense:totals.expense,balance:totals.income-totals.expense,count:list.length};
+      });
+      var values=bucketData.map(function(data){return data.balance;});
+      function bucketSummary(bucket,data){return bucket.fullLabel+": "+tr("Доходы")+": "+fmt(data.income)+"; "+tr("Расходы")+": "+fmt(data.expense)+"; "+tr("Баланс периода")+": "+fmt(data.balance)+"; "+countText(data.count);}
+      $("#trendDescription").textContent=buckets.map(function(bucket,index){return bucketSummary(bucket,bucketData[index]);}).join(". ");
       var box=$("#trendChart");if(values.every(function(v){return v===0;})){box.innerHTML='<div class="empty-chart">'+tr("Добавьте операции, чтобы увидеть динамику")+'</div>';return;}
       var W=700,H=220,L=48,R=9,T=10,B=27,ph=H-T-B,pw=W-L-R,min=Math.min(0,...values),max=Math.max(0,...values);if(max===min){max+=1;min-=1;}var pad=(max-min)*.12;max+=pad;min-=pad;
       function px(i){return L+pw*(buckets.length===1?.5:i/(buckets.length-1));}
@@ -223,8 +245,8 @@
       var grid="";for(var n=0;n<4;n++){var val=max-(max-min)*n/3,yy=py(val);grid+='<line class="gridline" x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'"/><text class="axis" x="'+(L-6)+'" y="'+(yy+3)+'" text-anchor="end">'+escape(compact(val))+"</text>";}
       var zero='<line class="zero-line" x1="'+L+'" y1="'+py(0)+'" x2="'+(W-R)+'" y2="'+py(0)+'"/>';
       var path=values.map(function(v,i){return (i?"L":"M")+" "+px(i).toFixed(1)+" "+py(v).toFixed(1);}).join(" ");
-      var points=values.map(function(v,i){var pointLabel=buckets[i].label+": "+fmt(v);return '<circle class="point" cx="'+px(i)+'" cy="'+py(v)+'" r="3.5" tabindex="0" role="img" aria-label="'+escape(pointLabel)+'" data-tooltip="'+escape(pointLabel)+'"><title>'+escape(pointLabel)+"</title></circle>";}).join("");
-      var labels=buckets.map(function(b,i){return '<text class="axis" x="'+px(i)+'" y="'+(H-5)+'" text-anchor="middle">'+escape(b.label)+"</text>";}).join("");
+      var points=values.map(function(v,i){var pointLabel=bucketSummary(buckets[i],bucketData[i]);return '<circle class="point" cx="'+px(i)+'" cy="'+py(v)+'" r="3.5" tabindex="0" role="img" aria-label="'+escape(pointLabel)+'" data-tooltip="'+escape(pointLabel)+'"><title>'+escape(pointLabel)+"</title></circle>";}).join("");
+      var labels=buckets.map(function(b,i){if(mode==="month"&&i%5!==0&&i!==buckets.length-1)return "";return '<text class="axis" x="'+px(i)+'" y="'+(H-5)+'" text-anchor="middle">'+escape(b.label)+"</text>";}).join("");
       box.innerHTML='<svg viewBox="0 0 '+W+" "+H+'" preserveAspectRatio="none">'+grid+zero+'<path class="trend-line" d="'+path+'"/>'+points+labels+'</svg><div class="chart-tooltip" id="trendTooltip" role="tooltip" hidden></div>';
       attachChartTooltips(box,"trendTooltip");
     },
