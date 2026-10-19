@@ -50,8 +50,8 @@
       </section>
 
       <section class="charts">
-        <article class="panel trend-panel"><div class="panel-head"><div><h2>Динамика финансов</h2><p>Доходы минус расходы</p></div><span class="legend"><i></i> Баланс периода</span></div><div class="chart" id="trendChart" role="img" aria-label="График динамики финансов"></div></article>
-        <article class="panel category-panel"><div class="panel-head"><div><h2>Расходы по категориям</h2><p>Распределение за период</p></div></div><div class="donut-area"><div id="categoryChart" class="donut" role="img" aria-label="Распределение расходов по категориям"></div><div class="donut-center"><small>Расходы</small><strong id="donutTotal">—</strong></div></div><div class="legend-list" id="categoryLegend"></div></article>
+        <article class="panel trend-panel"><div class="panel-head"><div><h2 id="trendTitle">Динамика финансов</h2><p>Доходы минус расходы</p></div><span class="legend"><i></i> Баланс периода</span></div><div class="chart" id="trendChart" role="group" aria-labelledby="trendTitle" aria-describedby="trendDescription" aria-label="График динамики финансов"></div><p class="sr-only" id="trendDescription"></p></article>
+        <article class="panel category-panel"><div class="panel-head"><div><h2 id="categoryTitle">Расходы по категориям</h2><p>Распределение за период</p></div></div><div class="donut-area"><div id="categoryChart" class="donut" role="group" aria-labelledby="categoryTitle" aria-describedby="categoryDescription" aria-label="Распределение расходов по категориям"></div><div class="chart-tooltip" id="categoryTooltip" role="tooltip" hidden></div><div class="donut-center"><small>Расходы</small><strong id="donutTotal">—</strong></div></div><p class="sr-only" id="categoryDescription"></p><div class="legend-list" id="categoryLegend"></div></article>
       </section>
 
       <section class="panel transactions" id="transactions">
