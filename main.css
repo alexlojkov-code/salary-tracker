@@ -93,3 +93,9 @@ tbody tr:hover .category-icon{transform:translateY(-1px) rotate(-2deg)}
 .category-panel .legend-row{gap:8px;font-size:clamp(10px,2.8cqi,12px);line-height:1.35}
 .category-panel .legend-row b{font-size:inherit;font-weight:680}
 .category-panel .legend-row .swatch{width:8px;height:8px}
+
+
+/* Keep the dashboard currency control compact beside the period and language selectors. */
+.currency-top-wrap{flex:0 0 auto}
+.currency-top-wrap select{width:42px;max-width:42px}
+@media(max-width:620px){.currency-top-wrap{flex:0 0 86px}.currency-top-wrap select{width:42px;max-width:42px}}
