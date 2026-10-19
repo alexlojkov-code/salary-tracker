@@ -114,3 +114,11 @@ select option,select optgroup{color:var(--text);background-color:var(--surface)}
 .point,.donut-part{cursor:pointer}
 .point:hover,.point:focus-visible{stroke-width:4;filter:drop-shadow(0 1px 2px rgba(0,0,0,.24))}
 .donut-part:focus-visible{stroke-width:21;outline:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.24))}
+
+
+/* Adapt dashboard controls and metrics for compact laptops and phones. */
+.currency-top-wrap{flex:0 0 102px;min-width:102px}
+.currency-top-wrap select{width:58px;min-width:58px;max-width:58px}
+@media(min-width:621px) and (max-width:1000px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric.balance{grid-column:1/-1}}
+@media(max-width:620px){.currency-top-wrap{flex:0 0 102px;min-width:102px}.currency-top-wrap select{width:58px;min-width:58px;max-width:58px}}
+@media(max-width:380px){.toolbar{display:grid;grid-template-columns:minmax(0,1fr) 38px 102px;gap:8px}.toolbar>.select-wrap:not(.currency-top-wrap){grid-column:1/3;grid-row:1;width:100%;min-width:0}.toolbar>.currency-top-wrap{grid-column:3;grid-row:1;flex:none;width:102px}.toolbar>.language-wrap{grid-column:1;grid-row:2;justify-self:start}.toolbar>.icon-btn{grid-column:2;grid-row:2;margin-left:0}.toolbar>.primary{grid-column:1/-1;grid-row:3;order:0;flex:none;width:100%;min-height:42px}}
