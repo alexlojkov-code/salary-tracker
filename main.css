@@ -117,8 +117,9 @@ select option,select optgroup{color:var(--text);background-color:var(--surface)}
 
 
 /* Adapt dashboard controls and metrics for compact laptops and phones. */
-.currency-top-wrap{flex:0 0 102px;min-width:102px}
-.currency-top-wrap select{width:58px;min-width:58px;max-width:58px}
+.currency-top-wrap{position:relative;flex:0 0 112px;min-width:112px}
+.currency-top-wrap select{-webkit-appearance:none;appearance:none;width:68px;min-width:68px;max-width:68px;padding:0;text-overflow:clip}
+.currency-top-wrap::after{content:"";position:absolute;top:50%;right:11px;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-70%) rotate(45deg);pointer-events:none}
 @media(min-width:621px) and (max-width:1000px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric.balance{grid-column:1/-1}}
-@media(max-width:620px){.currency-top-wrap{flex:0 0 102px;min-width:102px}.currency-top-wrap select{width:58px;min-width:58px;max-width:58px}}
-@media(max-width:380px){.toolbar{display:grid;grid-template-columns:minmax(0,1fr) 38px 102px;gap:8px}.toolbar>.select-wrap:not(.currency-top-wrap){grid-column:1/3;grid-row:1;width:100%;min-width:0}.toolbar>.currency-top-wrap{grid-column:3;grid-row:1;flex:none;width:102px}.toolbar>.language-wrap{grid-column:1;grid-row:2;justify-self:start}.toolbar>.icon-btn{grid-column:2;grid-row:2;margin-left:0}.toolbar>.primary{grid-column:1/-1;grid-row:3;order:0;flex:none;width:100%;min-height:42px}}
+@media(max-width:620px){.currency-top-wrap{flex:0 0 112px;min-width:112px}}
+@media(max-width:380px){.toolbar{display:grid;grid-template-columns:minmax(0,1fr) 38px 112px;gap:8px}.toolbar>.select-wrap:not(.currency-top-wrap){grid-column:1/3;grid-row:1;width:100%;min-width:0}.toolbar>.currency-top-wrap{grid-column:3;grid-row:1;flex:none;width:112px}.toolbar>.language-wrap{grid-column:1;grid-row:2;justify-self:start}.toolbar>.icon-btn{grid-column:2;grid-row:2;margin-left:0}.toolbar>.primary{grid-column:1/-1;grid-row:3;order:0;flex:none;width:100%;min-height:42px}}
