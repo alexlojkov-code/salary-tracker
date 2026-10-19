@@ -185,6 +185,7 @@
       else if(mode==="month"){var y=today.getFullYear(),m=today.getMonth(),days=new Date(y,m+1,0).getDate(),count=Math.ceil(days/7);for(var j=0;j<count;j++){var day=j*7+1,finish=Math.min(day+7,days+1);buckets.push({from:dateISO(new Date(y,m,day)),to:dateISO(new Date(y,m,finish)),label:day+"–"+(finish-1)});}}
       else{for(var k=0;k<12;k++){buckets.push({from:dateISO(new Date(today.getFullYear(),k,1)),to:dateISO(new Date(today.getFullYear(),k+1,1)),label:new Intl.DateTimeFormat(locale(),{month:"short"}).format(new Date(today.getFullYear(),k,1)).replace(".","")});}}
       var values=buckets.map(function(b){return state.transactions.filter(function(t){return inRange(t,b);}).reduce(function(sum,t){return sum+(t.type==="income"?Number(t.amount):-Number(t.amount));},0);});
+      $("#trendDescription").textContent=tr("Баланс периода")+": "+buckets.map(function(bucket,index){return bucket.label+" — "+fmt(values[index]);}).join("; ");
       var box=$("#trendChart");if(values.every(function(v){return v===0;})){box.innerHTML='<div class="empty-chart">'+tr("Добавьте операции, чтобы увидеть динамику")+'</div>';return;}
       var W=700,H=220,L=48,R=9,T=10,B=27,ph=H-T-B,pw=W-L-R,min=Math.min(0,...values),max=Math.max(0,...values);if(max===min){max+=1;min-=1;}var pad=(max-min)*.12;max+=pad;min-=pad;
       function px(i){return L+pw*(buckets.length===1?.5:i/(buckets.length-1));}
@@ -192,19 +193,23 @@
       var grid="";for(var n=0;n<4;n++){var val=max-(max-min)*n/3,yy=py(val);grid+='<line class="gridline" x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'"/><text class="axis" x="'+(L-6)+'" y="'+(yy+3)+'" text-anchor="end">'+escape(compact(val))+"</text>";}
       var zero='<line class="zero-line" x1="'+L+'" y1="'+py(0)+'" x2="'+(W-R)+'" y2="'+py(0)+'"/>';
       var path=values.map(function(v,i){return (i?"L":"M")+" "+px(i).toFixed(1)+" "+py(v).toFixed(1);}).join(" ");
-      var points=values.map(function(v,i){return '<circle class="point" cx="'+px(i)+'" cy="'+py(v)+'" r="3.5"><title>'+escape(buckets[i].label+": "+fmt(v))+"</title></circle>";}).join("");
+      var points=values.map(function(v,i){var pointLabel=buckets[i].label+": "+fmt(v);return '<circle class="point" cx="'+px(i)+'" cy="'+py(v)+'" r="3.5" tabindex="0" role="img" aria-label="'+escape(pointLabel)+'" data-tooltip="'+escape(pointLabel)+'"><title>'+escape(pointLabel)+"</title></circle>";}).join("");
       var labels=buckets.map(function(b,i){return '<text class="axis" x="'+px(i)+'" y="'+(H-5)+'" text-anchor="middle">'+escape(b.label)+"</text>";}).join("");
-      box.innerHTML='<svg viewBox="0 0 '+W+" "+H+'" preserveAspectRatio="none" aria-hidden="true">'+grid+zero+'<path class="trend-line" d="'+path+'"/>'+points+labels+"</svg>";
+      box.innerHTML='<svg viewBox="0 0 '+W+" "+H+'" preserveAspectRatio="none">'+grid+zero+'<path class="trend-line" d="'+path+'"/>'+points+labels+'</svg><div class="chart-tooltip" id="trendTooltip" role="tooltip" hidden></div>';
+      attachChartTooltips(box,"trendTooltip");
     },
     donut:function(){
       var costs=Finance.period().filter(function(t){return t.type==="expense";});
       var map={};costs.forEach(function(t){map[t.category]=(map[t.category]||0)+Number(t.amount);});
       var items=Object.keys(map).map(function(key){var c=catById(key);return {id:key,label:catLabel(key),color:c[2],value:map[key]};}).sort(function(a,b){return b.value-a.value;});
       var sum=items.reduce(function(a,b){return a+b.value;},0);var totalNumber=new Intl.NumberFormat(locale(),{maximumFractionDigits:state.settings.currency==="UZS"?0:2}).format(sum);$("#donutTotal").innerHTML='<span class="donut-number">'+escape(totalNumber)+'</span><span class="donut-currency">'+escape(state.settings.currency)+'</span>';
+      var percentFormat=new Intl.NumberFormat(locale(),{style:"percent",maximumFractionDigits:1});
+      $("#categoryDescription").textContent=items.length?tr("Расходы")+": "+fmt(sum)+". "+items.map(function(item){return item.label+" — "+fmt(item.value)+" ("+percentFormat.format(item.value/sum)+")";}).join("; "):tr("Нет расходов за период");
       var circumference=2*Math.PI*53,offset=0,parts="";
-      items.forEach(function(item){var len=circumference*item.value/sum;parts+='<circle class="donut-part" cx="75" cy="75" r="53" stroke="'+item.color+'" stroke-dasharray="'+len+" "+(circumference-len)+'" stroke-dashoffset="'+(-offset)+'"><title>'+escape(item.label+": "+fmt(item.value))+"</title></circle>";offset+=len;});
-      $("#categoryChart").innerHTML='<svg viewBox="0 0 150 150" aria-hidden="true"><circle class="donut-track" cx="75" cy="75" r="53"/>'+parts+"</svg>";
+      items.forEach(function(item){var len=circumference*item.value/sum,share=percentFormat.format(item.value/sum),pointLabel=item.label+": "+fmt(item.value)+" ("+share+")";parts+='<circle class="donut-part" cx="75" cy="75" r="53" tabindex="0" role="img" aria-label="'+escape(pointLabel)+'" data-tooltip="'+escape(pointLabel)+'" stroke="'+item.color+'" stroke-dasharray="'+len+" "+(circumference-len)+'" stroke-dashoffset="'+(-offset)+'"><title>'+escape(pointLabel)+"</title></circle>";offset+=len;});
+      $("#categoryChart").innerHTML='<svg viewBox="0 0 150 150"><circle class="donut-track" cx="75" cy="75" r="53"/>'+parts+"</svg>";
       fitDonutTotal();$("#categoryLegend").innerHTML=items.length?items.slice(0,5).map(function(x){return '<div class="legend-row"><i class="swatch" style="background:'+x.color+'"></i><span>'+escape(x.label)+'</span><b>'+escape(fmt(x.value))+"</b></div>";}).join(""):'<div class="legend-row"><span>'+tr("Нет расходов за период")+'</span></div>';
+      attachChartTooltips($("#categoryChart").parentElement,"categoryTooltip");
     },
     history:function(){
       var list=Finance.history(),rows="";
@@ -217,6 +222,24 @@
     },
     all:function(){UI.theme();syncCurrencySelectors(state.settings.currency);$(".currency-label").textContent=state.settings.currency;UI.metrics();UI.trend();UI.donut();UI.history();}
   };
+  function attachChartTooltips(container,tooltipId){
+    var tooltip=$("#"+tooltipId,container);
+    if(!tooltip)return;
+    container.querySelectorAll("[data-tooltip]").forEach(function(point){
+      function show(){
+        tooltip.textContent=point.getAttribute("data-tooltip");tooltip.hidden=false;point.setAttribute("aria-describedby",tooltip.id);
+        var containerRect=container.getBoundingClientRect(),pointRect=point.getBoundingClientRect();
+        var left=pointRect.left-containerRect.left+pointRect.width/2-tooltip.offsetWidth/2;
+        var top=pointRect.top-containerRect.top-tooltip.offsetHeight-8;
+        left=Math.max(4,Math.min(left,container.clientWidth-tooltip.offsetWidth-4));
+        if(top<4)top=pointRect.bottom-containerRect.top+8;
+        tooltip.style.left=left+"px";tooltip.style.top=top+"px";
+      }
+      function hide(){if(document.activeElement===point||point.matches(":hover"))return;point.removeAttribute("aria-describedby");tooltip.hidden=true;}
+      point.addEventListener("pointerenter",show);point.addEventListener("pointerleave",hide);
+      point.addEventListener("focus",show);point.addEventListener("blur",hide);
+    });
+  }
   function fitDonutTotal(){
     var number=$("#categoryChart .donut-number"),chart=$("#categoryChart");
     if(!number||!chart.clientWidth)return;
